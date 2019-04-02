@@ -19,6 +19,13 @@ body {
   background-image: url("/images/head.jpg");
   background-size: cover;
   height: 300px; }
+  .head h1 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 35px;
+    color: white;
+    text-shadow: 0 1px 3px black; }
 
 .nav {
   padding: 15px 20px;
@@ -44,8 +51,16 @@ body {
 .catalog table caption {
   background: #CD853F;
   padding: 20px; }
+.catalog table tr {
+  font-size: 1rem; }
+  .catalog table tr th {
+    padding: 20px 5px; }
+  .catalog table tr td {
+    padding: 10px 5px; }
 
 .footer {
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px #000000;
   text-align: center;
   margin-top: 50px; }
 
