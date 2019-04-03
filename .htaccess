@@ -1,4 +1,3 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule (.*) index.php?YPATH=$1 [QSA]
+RewriteRule ^(.*)$ public/$1 [L]

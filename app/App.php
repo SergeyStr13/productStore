@@ -1,72 +1,38 @@
 <?php
 namespace app;
 
-use book\BookController;
-use user\UserController;
+use app\cart\CartController;
+use app\page\PageController;
+use app\product\ProductController;
+use app\user\UserController;
+use app\core\App as BaseApp;
 
-class App {
+class App extends BaseApp {
 
-	/** @var Request $request */
-	public $request;
-
-	/** @var Database $db */
-	public $db;
-
-	/** @var string $uri */
-	public $uri;
-
-	/** @var Router $router */
-	private $router;
-
-	/** @var string $path */
-	private $path;
-
-	/** @var static $instance */
-	private static $instance;
-
-	public function __construct() {
-		$this->path = dirname(__DIR__);
-		spl_autoload_register([$this,'autoload']);
-
-		$this->request = new Request();
-		$this->uri = '/'.($this->request->get('YPATH') ?? ''); // todo: переименовать YPATH во что-то более подходящее
-		$this->db = new Database(['user' => 'root', 'dbname' => 'booksphp']);
-
-		$this->router = new Router([
-			'/' => [UserController::class, 'users'],
+	protected function getRoutes() {
+		return [
+			'/user/users' => [UserController::class, 'users'],
 			'/user/add' => [UserController::class, 'add'],
 			'/user/update' => [UserController::class, 'update'],
 			'/user/delete' => [UserController::class, 'delete'],
 
-			'/book/books' => [BookController::class, 'books'],
-		]);
-		//разобраться
-		if (self::$instance === null) {
-			self::$instance = $this;
-		}
+			'/' => [ProductController::class, 'products'],
+			'/product/products' => [ProductController::class, 'products'],
+			'/product/add' => [ProductController::class, 'add'],
+			'/product/update' => [ProductController::class, 'update'],
+			'/product/delete' => [ProductController::class, 'delete'],
+
+			'/cart' => [CartController::class, 'cart'],
+			'/cart/add' => [CartController::class, 'add'],
+
+			'/main' => [PageController::class, 'main'],
+			'/delivery' => [PageController::class, 'delivery'],
+			'/contacts' => [PageController::class, 'contacts'],
+		];
 	}
 
-	public static function getInstance(): self {
-		return self::$instance;
-	}
-
-	public function run() {
-
-		if (!$this->router->dispatch($this->uri)) {
-			echo '404 Page not found';
-		}
-	}
-
-	public function redirect($uri) {
-		header("location: $uri");
-		exit();
-	}
-
-	private function autoload($className) {
-		$file = $this->path.'/'.str_replace('\\','/',$className).'.php';
-		if (is_file($file)) {
-			require_once $file;
-		}
+	protected function getViewPath() {
+		return dirname(__DIR__).'/views';
 	}
 
 }

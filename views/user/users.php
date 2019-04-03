@@ -1,6 +1,6 @@
 <?php
 //echo "Useri";
-/** @var \user\User[] $users */
+/** @var app\user\User[] $users */
 ?>
 <h1>Пользователи</h1>
 <a class="add" href="/user/add">[+]</a>
@@ -13,7 +13,7 @@
 		<th></th>
 	</tr>
 	<tbody>
-		<?php foreach ($users as $key => $user): ?>
+		<?php foreach ($users as $user): ?>
 			<tr>
 				<td><?= $user->name ?></td>
 				<td><?= $user->login ?></td>
