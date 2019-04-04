@@ -45,11 +45,12 @@ class Product {
 	}
 
 	public static function findMany($ids) {
+		if (!$ids) {
+			return [];
+		}
 		$db = App::getInstance()->db->getConnection();
-
 		$query = $db->query("select * from product where id in (". implode(',', $ids).")");
 		$items = $query->fetchAll(\PDO::FETCH_CLASS, self::class);
-
 		//var_dump($books);
 		return $items;
 	}

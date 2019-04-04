@@ -24,6 +24,7 @@ class App extends BaseApp {
 
 			'/cart' => [CartController::class, 'cart'],
 			'/cart/add' => [CartController::class, 'add'],
+			'/cart/send' => [CartController::class, 'send'],
 
 			'/main' => [PageController::class, 'main'],
 			'/delivery' => [PageController::class, 'delivery'],

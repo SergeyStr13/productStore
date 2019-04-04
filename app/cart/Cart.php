@@ -24,7 +24,9 @@ class Cart {
 	}
 
 	public function getPositions() {
+
 		$products = Product::findMany(array_keys($this->productsCount));
+
 
 		$productsById = array_column($products, null, 'id');
 

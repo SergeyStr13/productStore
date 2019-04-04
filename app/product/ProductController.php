@@ -15,9 +15,13 @@ class ProductController extends Controller{
 	 *
 	 */
 	public function Products() {
+		$message = '';
+		if ($this->request->get('message') === 'cartSend') {
+			$message = 'Заказ успешно оформлен';
+		}
 		$products = Product::all();
 		//$products = [];
-		$this->render('products', compact('products'));
+		$this->render('products', compact('products','message'));
 	}
 
 	public function Product() {

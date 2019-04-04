@@ -14,7 +14,7 @@
 
 		<div class="nav">
 			<div class="cart">
-				<a><i class="mdi mdi-cart"></i></a>
+				<a href="/cart"><i class="mdi mdi-cart"></i></a>
 			</div>
 
 			<ul>

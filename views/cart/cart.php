@@ -1,34 +1,32 @@
 <?php
-/**  @var app\product\Product[] $products */
+	$priceTotal = 0;
 ?>
-
-<?php if ($message): ?>
-	<div class="message"><?= $message ?></div>
-<?php endif; ?>
-<div class="catalog">
+<div class="cart">
 	<table class="table">
-		<caption>Бакалея</caption>
+		<caption>Потребительская корзина</caption>
 		<tr>
-			<th>Артикул </th>
-			<th>Фото</th>
-			<th>Название</th>
-			<th>Описание</th>
-			<th>Объем</th>
+			<th>Наименование товара</th>
 			<th>Цена</th>
-			<th></th>
+			<th>Количество</th>
 		</tr>
-		<?php foreach ($products as $product): ?>
+		<?php foreach ($positions as $position): ?>
+			<?php
+				/** @var \app\product\Product $product */
+				$product = $position->product;
+				$priceTotal += $product->price * $position->count;
+			?>
 			<tr>
-				<td><?= $product->article ?></td>
-				<td><img src="<?= $product->photo ?>"></td>
 				<td><?= $product->title ?></td>
-				<td><?= $product->description ?></td>
-				<td><?= $product->volume ?></td>
 				<td><?= $product->price ?></td>
-				<td><a href="/cart/add?product=<?= $product->id ?>"><i class="mdi mdi-cart-arrow-down"></i></a></td>
+				<td><?= $position->count ?></td>
+
 			</tr>
 		<?php endforeach; ?>
 	</table>
+	<div style="text-align: right">
+		<div class="price-total">Итого: <?= $priceTotal ?> руб.</div>
+		<a href="/cart/send" class="button">Оформить заказ</a>
+	</div>
 </div>
 
 <?php /* <?php

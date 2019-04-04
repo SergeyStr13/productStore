@@ -14,9 +14,15 @@ class CartController extends Controller{
 
 	public function cart() {
 		$positions = $this->getCart()->getPositions();
-		var_dump($positions);
-		exit();
+		//var_dump($positions);
+		//exit();
 		$this->render('cart', compact('positions'));
+	}
+
+	public function send() {
+		$session = new Session();
+		$session->clear('cart');
+		$this->app->redirect('/product/products?message=cartSend');
 	}
 
 	public function add() {

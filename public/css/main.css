@@ -11,6 +11,29 @@ body {
   background-image: url("/images/page-bg.jpg");
   background-size: cover; }
 
+table.table {
+  width: 100%;
+  margin-bottom: 30px; }
+  table.table caption {
+    background: #CD853F;
+    padding: 20px; }
+  table.table tr {
+    font-size: 1rem; }
+    table.table tr th {
+      padding: 20px 5px; }
+    table.table tr td {
+      padding: 10px 5px;
+      text-align: center; }
+
+.button {
+  background: #279f47;
+  color: white;
+  display: inline-block;
+  line-height: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
+  text-decoration: none; }
+
 .page {
   width: 900px;
   margin: 50px auto; }
@@ -48,17 +71,27 @@ body {
 .content {
   background: #FFFFFF;
   min-height: 500px;
-  padding: 20px; }
+  padding: 20px;
+  position: relative; }
 
-.catalog table caption {
-  background: #CD853F;
-  padding: 20px; }
-.catalog table tr {
-  font-size: 1rem; }
-  .catalog table tr th {
-    padding: 20px 5px; }
-  .catalog table tr td {
-    padding: 10px 5px; }
+.cart .price-total {
+  margin-bottom: 20px; }
+
+@keyframes hide {
+  0% {
+    visibility: visible; }
+  100% {
+    visibility: hidden; } }
+.message {
+  position: absolute;
+  right: 0;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 1px 5px #00000075;
+  top: 0;
+  visibility: visible;
+  animation: 5s hide;
+  animation-fill-mode: forwards; }
 
 .footer {
   color: #FFFFFF;
