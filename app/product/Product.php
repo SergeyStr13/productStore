@@ -3,8 +3,12 @@ namespace app\product;
 use app\core\App;
 use PDO;
 
-/**
- * Class books
+/*
+ * Class product
+ * @property-read string $article
+ * @property-read string $photo
+ * @property-read int $price
+ * @property-read string $volume *
  */
 class Product {
 
@@ -17,6 +21,10 @@ class Product {
 	public $price;
 	public $volume;
 
+	/**
+	 * Product constructor.
+	 * @param array $fields
+	 */
 	public function __construct($fields = []) {
 		foreach ((array)$fields as $field => $value) {
 			if (property_exists($this,$field)) {
@@ -25,6 +33,10 @@ class Product {
 		}
 	}
 
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
 	public static function find($id) {
 		$db = App::getInstance()->db->getConnection();
 		$query= $db->query("select * from product where id = $id");
@@ -57,18 +69,18 @@ class Product {
 
 	public function save() {
 		$db = App::getInstance()->db->getConnection();
-		if ($this->id) {
+		if ($this->id != null) {
 			$query = $db->prepare("update product set title = :title, description = :description, "
 				."article = :article where product.id= :id");
 			$query->execute((array) $this);
 		} else {
-			$book = (array) $this;
-			$keys = array_keys($book);
+			$product= (array) $this;
+			$keys = array_keys($product);
 			$fields = implode(',',$keys);
 			$values = implode(',',array_fill(0, count($keys), '?'));
 
 			$query = $db->prepare("insert into product ($fields) values ($values) ");
-			$query->execute(array_values($book));
+			$query->execute(array_values($product));
 		}
 	}
 

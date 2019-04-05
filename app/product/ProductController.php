@@ -2,18 +2,9 @@
 namespace app\product;
 
 use app\core\Controller;
-/**
- *
- */
+
 class ProductController extends Controller{
 
-	//ProductsItems
-	//ProductsItem
-	//add, update, delete
-	//
-	/**
-	 *
-	 */
 	public function Products() {
 		$message = '';
 		if ($this->request->get('message') === 'cartSend') {
@@ -24,16 +15,18 @@ class ProductController extends Controller{
 		$this->render('products', compact('products','message'));
 	}
 
-	public function Product() {
-
+	public function manageProducts() {
+		$products = Product::all();
+		$this->render('manageProducts', compact('products'));
 	}
 
+	/**  Product $product*/
 	public function add() {
 		if ($this->request->isPost()) {
 			$article = $this->request->post('article');
 			$title = $this->request->post('title');
 			$description = $this->request->post('description');
-			$categoryId = $this->request->post('categoryId') ?? 0;
+			$categoryId = (int) $this->request->post('categoryId') ?? 0;
 			$price = $this->request->post('price') ?? 0;
 			$volume = $this->request->post('volume');
 			$photo = $this->request->post('photo');
@@ -41,10 +34,9 @@ class ProductController extends Controller{
 			if ($title && $article && $description) {
 				$product = new Product(compact('article', 'title', 'description','categoryId','photo','price','volume'));
 				$product->save();
-				$this->app->redirect('/product/products');
+				$this->app->redirect('/product/manageProducts');
 			}
 		}
-
 		$action = $this->uri;
 		$this->render('form', compact('action'));
 	}
@@ -61,18 +53,24 @@ class ProductController extends Controller{
 			$article = $this->request->post('article');
 			$title = $this->request->post('title');
 			$description = $this->request->post('description');
+			$categoryId = $this->request->post('categoryId') ?? 0;
+			$price = $this->request->post('price') ?? 0;
+			$volume = $this->request->post('volume');
+			$photo = $this->request->post('photo');
 
 			if ($title && $article && $description) {
-				//$Product = new Product(compact('title', 'author', 'description'));
 				$product->title = $title;
 				$product->description = $description;
 				$product->author = $article;
+				$product->categoryId = $categoryId;
+				$product->price = $price;
+				$product->volume = $volume;
+				$product->photo = $photo;
 
 				$product->save();
 				$this->app->redirect('/product/products');
 			}
 		}
-
 		$action = $this->uri.'?id='.$id;
 		$this->render('form', compact('action', 'product'));
 	}

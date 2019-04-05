@@ -22,6 +22,8 @@
 				<li><a href="/product/products">Каталог</a></li>
 				<li><a href="/delivery">Доставка</a></li>
 				<li><a href="/contacts">Контактная информация</a></li>
+				<li><a href="/user/users">Пользователи</a></li>
+				<li><a href="/product/manageProducts">Товары</a></li>
 			</ul>
 		</div>
 

@@ -2,7 +2,7 @@
 ?>
 
 <h1>Добавление пользователя <?php //$titleU ?></h1>
-<form class="add user" action="<?= $action ?>" method="post">
+<form class="form user" action="<?= $action ?>" method="post">
 	<div style="overflow: hidden; height: 0;">
 		<input type="password" name="fakePassword">
 	</div>

@@ -11,13 +11,18 @@ class App extends BaseApp {
 
 	protected function getRoutes() {
 		return [
+			'/' => [ProductController::class, 'products'],
+
+			'/user/admin' => [UserController::class, 'signIn'],
+			'/user/signOut' => [UserController::class, 'signOut'],
+
 			'/user/users' => [UserController::class, 'users'],
 			'/user/add' => [UserController::class, 'add'],
 			'/user/update' => [UserController::class, 'update'],
 			'/user/delete' => [UserController::class, 'delete'],
 
-			'/' => [ProductController::class, 'products'],
 			'/product/products' => [ProductController::class, 'products'],
+			'/product/manageProducts' => [ProductController::class, 'manageProducts'],
 			'/product/add' => [ProductController::class, 'add'],
 			'/product/update' => [ProductController::class, 'update'],
 			'/product/delete' => [ProductController::class, 'delete'],

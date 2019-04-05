@@ -1,9 +1,31 @@
 <?php
 namespace app\user;
 
+use app\authorisation\Authorisation;
 use app\core\Controller;
 
 class UserController extends Controller {
+
+	public function signIn() {
+		$login = $this->request->post('login');
+		$password = $this->request->post('password');
+		if ($login && $password) {
+			//$user = User::findByLogin($login);
+			$auth = new Authorisation();
+			$user = $auth->authoriseByCredentials($login, $password);
+			if (!$user) {
+				$this->app->redirect('/user/signIn');
+				die('Логин или пароль не совпадают');
+			};
+			$this->app->redirect('/user/users');
+		}
+		$action = $this->uri;
+		$this->render('signIn', compact('action'));
+	}
+
+	public function signOut() {
+		return '';
+	}
 
 	public function users() {
 		$users = User::all();
@@ -20,10 +42,9 @@ class UserController extends Controller {
 			if ($name && $login && $email) {
 				$user = new User(compact('name','login','password','email'));
 				$user->save();
-				$this->app->redirect('/users');
+				$this->app->redirect('/user/users');
 			}
 		}
-
 		$action = $this->uri;
 		$this->render('form', compact('action'));
 	}
@@ -51,7 +72,6 @@ class UserController extends Controller {
 			}
 		}
 		$action = $this->uri.'?id='.$id;
-
 		$this->render('form', compact('action', 'user'));
 	}
 
