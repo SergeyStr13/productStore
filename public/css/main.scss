@@ -69,6 +69,10 @@ table.table {
 	padding: 15px 20px;
 	background: #D2B48C;
 	border-bottom: 2px solid #D2B48C;
+	.nav-link {
+		float: right;
+		display: inline-block;
+	}
 	.cart {
 		float: right;
 	}
@@ -87,6 +91,8 @@ table.table {
 		}
 	}
 }
+
+
 
 .content {
 	background: #FFFFFF;
