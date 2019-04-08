@@ -10,7 +10,7 @@ class Authorisation {
 		//$userId = User::findByLogin($this->user);
 		$session = new Session();
 		$session->set('authUserId', $user->id);
-		var_dump($user->id); exit();
+		//var_dump($user->id); exit();
 	}
 
 	public function unAuthorise() {
