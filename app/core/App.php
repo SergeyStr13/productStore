@@ -21,12 +21,16 @@ abstract class App {
 	/** @var string $viewPath */
 	public $viewPath;
 
+	/** @var string $uploadPath */
+	public $uploadPath;
+
 	/** @var static $instance */
 	private static $instance;
 
 	public function __construct() {
-		$this->path = dirname(__DIR__, 2);
+		$this->path = dirname(str_replace('\\', '/',__DIR__), 2);
 		$this->viewPath = $this->getViewPath();
+		$this->uploadPath = $this->getUploadPath();
 
 		spl_autoload_register([$this,'autoload']);
 
@@ -44,6 +48,7 @@ abstract class App {
 
 	abstract protected function getRoutes();
 	abstract protected function getViewPath();
+	abstract protected function getUploadPath();
 
 	public static function getInstance(): self {
 		return self::$instance;

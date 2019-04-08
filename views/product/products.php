@@ -6,8 +6,9 @@
 	<div class="message"><?= $message ?></div>
 <?php endif; ?>
 <div class="catalog">
+	<?php foreach ($products as $categoryTitle => $productItems): ?>
 	<table class="table">
-		<caption>Бакалея</caption>
+		<caption><?= $categoryTitle ?></caption>
 		<tr>
 			<th>Артикул </th>
 			<th>Фото</th>
@@ -17,18 +18,19 @@
 			<th>Цена</th>
 			<th></th>
 		</tr>
-		<?php foreach ($products as $product): ?>
-			<tr>
-				<td><?= $product->article ?></td>
-				<td><img src="<?= $product->photo ?>"></td>
-				<td><?= $product->title ?></td>
-				<td><?= $product->description ?></td>
-				<td><?= $product->volume ?></td>
-				<td><?= $product->price ?></td>
-				<td><a href="/cart/add?product=<?= $product->id ?>"><i class="mdi mdi-cart-arrow-down"></i></a></td>
-			</tr>
-		<?php endforeach; ?>
+			<?php foreach ($productItems as $product): ?>
+				<tr>
+					<td><?= $product->article ?></td>
+					<td><img src="<?= '/public/images/products/'.$product->photo ?>"></td>
+					<td><?= $product->title ?></td>
+					<td style="width: 400px"><?= $product->description ?></td>
+					<td><?= $product->volume ?></td>
+					<td><?= $product->price ?></td>
+					<td><a href="/cart/add?product=<?= $product->id ?>"><i class="mdi mdi-cart-arrow-down"></i></a></td>
+				</tr>
+			<?php endforeach; ?>
 	</table>
+	<?php endforeach; ?>
 </div>
 
 <?php /* <?php

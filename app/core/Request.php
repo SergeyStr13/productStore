@@ -17,4 +17,13 @@ class Request {
 		}
 		return false;
 	}
+
+	public function file($var) {
+		$file = $_FILES[$var] ?? null;
+		if ($file && $file['error'] !== UPLOAD_ERR_NO_FILE) {
+			return $file;
+		}
+		return null;
+	}
+
 }

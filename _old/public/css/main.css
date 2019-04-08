@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  font-size: 16px; }
+
+table {
+  border-spacing: 0;
+  border: 0; }
+
+body {
+  font-family: Verdana, "Geneva CY", "DejaVu Sans", sans-serif;
+  background-image: url("/images/page-bg.jpg");
+  background-size: cover; }
+
+table.table {
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 30px; }
+  table.table caption {
+    background: #CD853F;
+    padding: 20px; }
+  table.table tr {
+    font-size: 1rem; }
+    table.table tr th {
+      padding: 20px 5px; }
+    table.table tr td {
+      padding: 10px 5px;
+      text-align: center; }
+      table.table tr td img {
+        width: 50px;
+        height: 50px; }
+
+.button {
+  background: #279f47;
+  color: white;
+  display: inline-block;
+  line-height: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
+  text-decoration: none; }
+
+.tool-button.add {
+  float: right; }
+
+.page {
+  width: 900px;
+  margin: 50px auto; }
+
+.head {
+  background-image: url("/images/head.jpg");
+  background-size: cover;
+  height: 300px; }
+  .head h1 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 35px;
+    color: white;
+    text-shadow: 0 1px 3px black; }
+
+.nav {
+  padding: 15px 20px;
+  background: #D2B48C;
+  border-bottom: 2px solid #D2B48C; }
+  .nav .cart {
+    float: right; }
+  .nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .nav ul li {
+      display: inline-block; }
+      .nav ul li a {
+        display: inline-block;
+        margin-right: 20px;
+        text-decoration: none;
+        color: #473E37; }
+
+.content {
+  background: #FFFFFF;
+  min-height: 500px;
+  padding: 20px;
+  position: relative; }
+
+.form input {
+  display: block;
+  width: 200px;
+  margin-left: 50px;
+  margin-bottom: 20px; }
+.form button, .form textarea, .form select {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 50px; }
+.form textarea {
+  width: 200px; }
+
+.cart .price-total {
+  margin-bottom: 20px; }
+
+@keyframes hide {
+  0% {
+    visibility: visible; }
+  100% {
+    visibility: hidden; } }
+.message {
+  position: absolute;
+  right: 0;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 1px 5px #00000075;
+  top: 0;
+  visibility: visible;
+  animation: 5s hide;
+  animation-fill-mode: forwards; }
+
+.footer {
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px #000000;
+  text-align: center;
+  margin-top: 50px; }
+
+/*# sourceMappingURL=main.css.map */

@@ -13,19 +13,19 @@ class App extends BaseApp {
 		return [
 			'/' => [ProductController::class, 'products'],
 
-			'/user/admin' => [UserController::class, 'signIn'],
-			'/user/signOut' => [UserController::class, 'signOut'],
+			'/admin' => [UserController::class, 'signIn'],
+			'/admin/sign-out' => [UserController::class, 'signOut'],
 
-			'/user/users' => [UserController::class, 'users'],
-			'/user/add' => [UserController::class, 'add'],
-			'/user/update' => [UserController::class, 'update'],
-			'/user/delete' => [UserController::class, 'delete'],
+			'/admin/users' => [UserController::class, 'users'],
+			'/admin/users/add' => [UserController::class, 'add'],
+			'/admin/users/update' => [UserController::class, 'update'],
+			'/admin/users/delete' => [UserController::class, 'delete'],
 
-			'/product/products' => [ProductController::class, 'products'],
-			'/product/manageProducts' => [ProductController::class, 'manageProducts'],
-			'/product/add' => [ProductController::class, 'add'],
-			'/product/update' => [ProductController::class, 'update'],
-			'/product/delete' => [ProductController::class, 'delete'],
+			'/products' => [ProductController::class, 'products'],
+			'/admin/products' => [ProductController::class, 'manageProducts'],
+			'/admin/products/add' => [ProductController::class, 'add'],
+			'/admin/products/update' => [ProductController::class, 'update'],
+			'/admin/products/delete' => [ProductController::class, 'delete'],
 
 			'/cart' => [CartController::class, 'cart'],
 			'/cart/add' => [CartController::class, 'add'],
@@ -38,7 +38,11 @@ class App extends BaseApp {
 	}
 
 	protected function getViewPath() {
-		return dirname(__DIR__).'/views';
+		return dirname(str_replace('\\', '/',__DIR__)).'/views';
+	}
+
+	protected function getUploadPath() {
+		return dirname(str_replace('\\', '/',__DIR__)).'/public';
 	}
 
 }

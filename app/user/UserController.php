@@ -14,21 +14,25 @@ class UserController extends Controller {
 			$auth = new Authorisation();
 			$user = $auth->authoriseByCredentials($login, $password);
 			if (!$user) {
-				$this->app->redirect('/user/signIn');
-				die('Логин или пароль не совпадают');
+				$this->app->redirect('/admin');
+				//die('Логин или пароль не совпадают');
 			};
-			$this->app->redirect('/user/users');
+			$this->app->redirect('/admin/users');
 		}
 		$action = $this->uri;
+		$this->layout = 'admin';
 		$this->render('signIn', compact('action'));
 	}
 
 	public function signOut() {
-		return '';
+		$auth = new Authorisation();
+		$auth->unAuthorise();
+		$this->app->redirect('/admin');
 	}
 
 	public function users() {
 		$users = User::all();
+		$this->layout = 'admin';
 		$this->render('users', compact('users'));
 	}
 
@@ -42,10 +46,11 @@ class UserController extends Controller {
 			if ($name && $login && $email) {
 				$user = new User(compact('name','login','password','email'));
 				$user->save();
-				$this->app->redirect('/user/users');
+				$this->app->redirect('/admin/users');
 			}
 		}
 		$action = $this->uri;
+		$this->layout = 'admin';
 		$this->render('form', compact('action'));
 	}
 
@@ -53,7 +58,7 @@ class UserController extends Controller {
 		$id = $this->request->get('id');
 		$user = User::find($id);
 		if (!$user) {
-			$this->app->redirect('/users');
+			$this->app->redirect('/admin/users');
 		}
 		if ($this->request->isPost()) {
 			$name = $this->request->post('name') ?? '';
@@ -68,10 +73,11 @@ class UserController extends Controller {
 				$user->email = $email;
 
 				$user->save();
-				$this->app->redirect('/users');
+				$this->app->redirect('/admin/users');
 			}
 		}
 		$action = $this->uri.'?id='.$id;
+		$this->layout = 'admin';
 		$this->render('form', compact('action', 'user'));
 	}
 
@@ -81,7 +87,7 @@ class UserController extends Controller {
 		if ($user) {
 			$user->delete();
 		}
-		$this->app->redirect('/users');
+		$this->app->redirect('/admin/users');
 	}
 
 

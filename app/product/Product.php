@@ -3,13 +3,6 @@ namespace app\product;
 use app\core\App;
 use PDO;
 
-/*
- * Class product
- * @property-read string $article
- * @property-read string $photo
- * @property-read int $price
- * @property-read string $volume *
- */
 class Product {
 
 	public $id;
@@ -20,6 +13,8 @@ class Product {
 	public $photo;
 	public $price;
 	public $volume;
+
+	public $categoryTitle;
 
 	/**
 	 * Product constructor.
@@ -33,23 +28,32 @@ class Product {
 		}
 	}
 
-	/**
-	 * @param $id
-	 * @return mixed
-	 */
 	public static function find($id) {
 		$db = App::getInstance()->db->getConnection();
-		$query= $db->query("select * from product where id = $id");
-		$query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, self::class);
-		$item = $query->fetch();
+		//$query= $db->query("select * from product where id=$id");
+		$query = $db->query("select * from product where id=$id");
+		$query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,Product::class);
+		$product = $query->fetch();
 
-		//return $item ? new Product($item): null;
-		return $item;
+		return $product ? new Product($product): null;
+		//return $product;
 	}
 
+	/**
+	 * @return Product[]
+	 */
 	public static function all() {
 		$db = App::getInstance()->db->getConnection();
 		$query = $db->query("select * from product");
+		$items = $query->fetchAll(\PDO::FETCH_CLASS, self::class);
+
+		//var_dump($books);
+		return $items;
+	}
+
+	public static function allWithCategory() {
+		$db = App::getInstance()->db->getConnection();
+		$query = $db->query("select product.*, category.title as categoryTitle from product LEFT JOIN category on product.categoryId = category.id");
 		$items = $query->fetchAll(\PDO::FETCH_CLASS, self::class);
 
 		//var_dump($books);
@@ -63,16 +67,23 @@ class Product {
 		$db = App::getInstance()->db->getConnection();
 		$query = $db->query("select * from product where id in (". implode(',', $ids).")");
 		$items = $query->fetchAll(\PDO::FETCH_CLASS, self::class);
-		//var_dump($books);
 		return $items;
+	}
+
+	public static function groupBy($items, $key) {
+		$result = [];
+		foreach ($items as $item) {
+			$result[$item->$key][] = $item;
+		}
+		return $result;
 	}
 
 	public function save() {
 		$db = App::getInstance()->db->getConnection();
 		if ($this->id != null) {
-			$query = $db->prepare("update product set title = :title, description = :description, "
-				."article = :article where product.id= :id");
-			$query->execute((array) $this);
+			$query = $db->prepare("update product set title = :title, description = :description, article = :article, "
+			."categoryId = :categoryId, photo = :photo, price = :price, volume = :volume where product.id= :id");
+			$query->execute(array_diff_key((array) $this, ['categoryTitle' => '']));
 		} else {
 			$product= (array) $this;
 			$keys = array_keys($product);
@@ -89,4 +100,6 @@ class Product {
 		$query = $db->prepare("delete from product where product.id = ?");
 		$query->execute([$this->id]);
 	}
+
+
 }

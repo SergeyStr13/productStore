@@ -4,6 +4,7 @@ namespace app\core;
 class Controller {
 
 	private $viewPath;
+
 	private $name;
 
 	protected $layout = 'main';

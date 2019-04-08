@@ -3,7 +3,7 @@
 ?>
 <div class="cart">
 	<table class="table">
-		<caption>Потребительская корзина</caption>
+		<caption>Выбранные товары</caption>
 		<tr>
 			<th>Наименование товара</th>
 			<th>Цена</th>
@@ -16,10 +16,9 @@
 				$priceTotal += $product->price * $position->count;
 			?>
 			<tr>
-				<td><?= $product->title ?></td>
+				<td style="text-align: left"><img style="padding: 0 40px 0px 100px" src="<?= $product->photo ?>"><?= $product->title ?></td>
 				<td><?= $product->price ?></td>
 				<td><?= $position->count ?></td>
-
 			</tr>
 		<?php endforeach; ?>
 	</table>
