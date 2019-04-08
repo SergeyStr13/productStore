@@ -1,6 +1,6 @@
 <?php
 //echo "Useri";
-/** @var app\user\User[] $users */
+/** @var app\user\User[] $users */   
 ?>
 <h1>Пользователи</h1>
 <a class="tool-button button add" href="/admin/users/add"><i class="mdi mdi-plus"></i>Добавить</a>
