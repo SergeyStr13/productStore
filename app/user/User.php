@@ -60,7 +60,7 @@ class User {
 		$db = App::getInstance()->db->getConnection();
 		if ($this->id) {
 			$query = $db->prepare("update user set name = :name, login = :login, "
-				."password = :password, email = :email where user.id= :id");
+				."password = :password, email = :email where id= :id");
 			$query->execute((array) $this);
 		} else {
 			$user = (array) $this;
@@ -74,7 +74,7 @@ class User {
 
 	public function delete() {
 		$db = App::getInstance()->db->getConnection();
-		$query = $db->prepare("delete from user where user.id = ?");
+		$query = $db->prepare("delete from user where id = ?");
 		$query->execute([$this->id]);
 	}
 }

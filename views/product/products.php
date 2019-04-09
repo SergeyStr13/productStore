@@ -1,5 +1,5 @@
 <?php
-/**  @var app\product\Product[] $products */
+/**  @var app\category\Product[] $products */
 ?>
 
 <?php if ($message): ?>
@@ -7,7 +7,7 @@
 <?php endif; ?>
 <div class="catalog">
 	<?php foreach ($products as $categoryTitle => $productItems): ?>
-	<table class="table">
+	<table class="table center">
 		<caption><?= $categoryTitle ?></caption>
 		<tr>
 			<th>Артикул </th>

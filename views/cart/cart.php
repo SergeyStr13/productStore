@@ -1,7 +1,7 @@
 <?php
 	$priceTotal = 0;
 ?>
-<div class="cart">
+<div class="cart-page">
 	<table class="table">
 		<caption>Выбранные товары</caption>
 		<tr>
@@ -11,12 +11,12 @@
 		</tr>
 		<?php foreach ($positions as $position): ?>
 			<?php
-				/** @var \app\product\Product $product */
+				/** @var \app\category\Product $product */
 				$product = $position->product;
 				$priceTotal += $product->price * $position->count;
 			?>
 			<tr>
-				<td style="text-align: left"><img style="padding: 0 40px 0px 100px" src="<?= $product->photo ?>"><?= $product->title ?></td>
+				<td style="text-align: left"><img class="preview-product" src="<?= '/images/products/'.$product->photo ?>"><?= $product->title ?></td>
 				<td><?= $product->price ?></td>
 				<td><?= $position->count ?></td>
 			</tr>

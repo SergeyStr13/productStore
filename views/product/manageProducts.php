@@ -1,5 +1,5 @@
 <?php
-/**  @var app\product\Product[] $products */
+/**  @var app\category\Product[] $products */
 
 ?>
 <h1>Товары</h1>
@@ -19,7 +19,7 @@
 		<?php foreach ($products as $product): ?>
 			<tr>
 				<td><?= $product->article ?></td>
-				<td><img src="<?= '/public/images/products/'.$product->photo ?>"></td>
+				<td><img src="<?= '/images/products/'.$product->photo ?>"></td>
 				<td><?= $product->categoryTitle ?></td>
 				<td><?= $product->title ?></td>
 				<td style="font-size: 13px;"><?= $product->description ?></td>

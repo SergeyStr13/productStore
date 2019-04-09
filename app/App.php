@@ -2,6 +2,7 @@
 namespace app;
 
 use app\cart\CartController;
+use app\category\CategoryController;
 use app\page\PageController;
 use app\product\ProductController;
 use app\user\UserController;
@@ -21,6 +22,11 @@ class App extends BaseApp {
 			'/admin/users/update' => [UserController::class, 'update'],
 			'/admin/users/delete' => [UserController::class, 'delete'],
 
+			'/admin/categories' => [CategoryController::class, 'categories'],
+			'/admin/categories/add' => [CategoryController::class, 'add'],
+			'/admin/categories/update' => [CategoryController::class, 'update'],
+			'/admin/categories/delete' => [CategoryController::class, 'delete'],
+
 			'/products' => [ProductController::class, 'products'],
 			'/admin/products' => [ProductController::class, 'manageProducts'],
 			'/admin/products/add' => [ProductController::class, 'add'],
@@ -28,6 +34,7 @@ class App extends BaseApp {
 			'/admin/products/delete' => [ProductController::class, 'delete'],
 
 			'/cart' => [CartController::class, 'cart'],
+			'/admin/carts' => [CartController::class, 'carts'],
 			'/cart/add' => [CartController::class, 'add'],
 			'/cart/send' => [CartController::class, 'send'],
 

@@ -1,6 +1,7 @@
 <?php
 namespace app\product;
 
+use app\category\Category;
 use app\core\Controller;
 use app\core\File;
 
@@ -8,8 +9,11 @@ class ProductController extends Controller{
 
 	public function Products() {
 		$message = '';
-		if ($this->request->get('message') === 'cartSend') {
+		$messageAlias = $this->request->get('message') ?? '';
+		if ($messageAlias === 'cartSend') {
 			$message = 'Заказ успешно оформлен';
+		} else if ($messageAlias === 'addedToCart') {
+			$message = 'Товар добавлен в корзину';
 		}
 		$products = Product::allWithCategory();
 		$products = Product::groupBy($products,'categoryTitle');

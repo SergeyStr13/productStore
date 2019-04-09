@@ -1,5 +1,4 @@
 <?php
-//echo "Useri";
 /** @var app\user\User[] $users */   
 ?>
 <h1>Пользователи</h1>

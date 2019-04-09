@@ -19,6 +19,12 @@ class CartController extends Controller{
 		$this->render('cart', compact('positions'));
 	}
 
+	public function carts() {
+		$carts = $this->getCart()->getPositions();
+		$this->layout = 'admin';
+		$this->render('carts', compact('carts'));
+	}
+
 	public function send() {
 		$session = new Session();
 		$session->clear('cart');
@@ -36,7 +42,7 @@ class CartController extends Controller{
 		$cart->addProduct($productId, 1);
 		$session = new Session();
 		$session->set('cart', $cart);
-		$this->app->redirect('/product/products');
+		$this->app->redirect('/product/products?message=addedToCart');
 	}
 
 

@@ -18,11 +18,12 @@
 		<?php if ($authUser): ?>
 			<div class="nav">
 				<a class="nav-link" href="/admin/sign-out">Выйти</a>
+				<a class="nav-link" href="/">Сайт</a>
 				<ul>
 					<li><a href="/admin/users">Пользователи</a></li>
-					<li><a href="/admin/products">Товары</a></li>
 					<li><a href="/admin/categories">Категории</a></li>
-					<li><a href="/admin/articles">Статьи</a></li>
+					<li><a href="/admin/products">Товары</a></li>
+					<li><a href="/admin/carts">Заказы</a></li>
 				</ul>
 
 			</div>

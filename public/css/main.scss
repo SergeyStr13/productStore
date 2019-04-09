@@ -8,27 +8,28 @@ body {
 }
 
 table.table {
-	font-size: 14px;
+	font-size: 1rem;
 	width: 100%;
-	margin-bottom: 30px;
+	//margin: 0 -50px 30px;
+
+	&.center td {
+		text-align: center;
+	}
 	caption {
 		background:#CD853F;
 		padding: 20px;
 	}
-	tr {
-		font-size: 1rem;
-		th {
-			padding: 20px 5px;
-		}
-		td {
-			padding: 10px 5px;
-			text-align: center;
-			img {
-				width: 50px;
-				height: 50px;
-			}
+	th {
+		padding: 20px 5px;
+	}
+	td {
+		padding: 10px 5px;
+		img {
+			width: 50px;
+			height: 50px;
 		}
 	}
+
 }
 
 .button {
@@ -72,6 +73,7 @@ table.table {
 	.nav-link {
 		float: right;
 		display: inline-block;
+		margin-left: 20px;
 	}
 	.cart {
 		float: right;
@@ -92,36 +94,48 @@ table.table {
 	}
 }
 
-
-
 .content {
 	background: #FFFFFF;
 	min-height: 500px;
 	padding: 20px;
+	//padding: 20px 60px;
 	position: relative;
+}
+
+.form-content {
+
 }
 
 .form {
 	input {
 		display: block;
 		width: 200px;
-		margin-left: 50px;
+		//margin-left: 50px;
 		margin-bottom: 20px;
 	}
-	button, textarea, select {
-		display: block;
+	textarea, select {
 		margin-bottom: 20px;
-		margin-left: 50px;
+		//margin-left: 50px;
 	}
 	textarea {
 		width: 200px;
 	}
 }
 
+.form-button {
+
+}
+
 .catalog {}
 
-.cart .price-total {
-	margin-bottom: 20px;
+.cart-page {
+	.preview-product {
+		margin: 0 40px 0px 100px;
+		vertical-align: inherit;
+	}
+	.price-total {
+		margin-bottom: 20px;
+	}
 }
 
 @keyframes hide {
