@@ -1,41 +1,39 @@
 <?php
 namespace app\cart;
 
+use app\order\OrderPosition;
 use app\product\Product;
 
 class Cart {
 
-	private $productsCount = [];
+	public $positions = [];
+
 
 	public function addProduct($productId, $count) {
-		/*if (!isset($this->productsCount[$productId])) {
-			$this->productsCount[$productId] = 0;
+		if (!isset($this->positions[$productId])) {
+			$this->positions[$productId] =  new OrderPosition(compact('productId', 'count'));
+		} else {
+			$this->positions[$productId]->count += $count;
 		}
-		$this->productsCount[$productId] += $count;*/
-		$this->productsCount[$productId] = ($this->productsCount[$productId] ?? 0) + $count;
 	}
 
 	public function removeProducts($productId) {
-		unset($this->productsCount[$productId]);
+		unset($this->positions[$productId]);
 	}
 
 	public function getProductCount($productId) {
-		return $this->productsCount[$productId] ?? 0;
+		return $this->positions[$productId]->count ?? 0;
 	}
 
-	public function getPositions() {
-		$products = Product::findMany(array_keys($this->productsCount));
+	public function getPositionsProduct() {
+		$products = Product::findMany(array_keys($this->positions));
 		$productsById = array_column($products, null, 'id');
 
 		$positions = [];
-
-		foreach ($this->productsCount as $productId => $count) {
-			$positions[] = (object) [
-				'product' => $productsById[$productId],
-				'count' => $count
-			];
+		foreach ($this->positions as $productId => $position) {
+			$position->product = $productsById[$productId];
+			$positions[$productId] = $position;
 		}
-
 		return $positions;
 	}
 

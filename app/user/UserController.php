@@ -16,7 +16,10 @@ class UserController extends Controller {
 			if (!$user) {
 				$this->app->redirect('/admin');
 				//die('Логин или пароль не совпадают');
-			};
+			}
+			if ($user->login !== 'admin') {
+				$this->app->redirect('/cart');
+			}
 			$this->app->redirect('/admin/users');
 		}
 		$action = $this->uri;
@@ -29,6 +32,17 @@ class UserController extends Controller {
 		$auth->unAuthorise();
 		$this->app->redirect('/admin');
 	}
+
+	public function register() {
+		$login = $this->request->post('login');
+		$password = $this->request->post('password');
+		$repeatPass = $this->request->post('repeatPass');
+
+
+		$action = $this->uri;
+		$this->render('register', compact('action'));
+	}
+
 
 	public function users() {
 		$users = User::all();

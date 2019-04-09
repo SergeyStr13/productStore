@@ -16,6 +16,7 @@ class App extends BaseApp {
 
 			'/admin' => [UserController::class, 'signIn'],
 			'/admin/sign-out' => [UserController::class, 'signOut'],
+			'/sign-in' => [UserController::class, 'signIn'],
 
 			'/admin/users' => [UserController::class, 'users'],
 			'/admin/users/add' => [UserController::class, 'add'],

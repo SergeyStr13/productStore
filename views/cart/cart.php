@@ -1,5 +1,7 @@
 <?php
 	$priceTotal = 0;
+	$auth = new \app\authorisation\Authorisation();
+	$authUser = $auth->getUser();
 ?>
 <div class="cart-page">
 	<table class="table">
@@ -24,7 +26,12 @@
 	</table>
 	<div style="text-align: right">
 		<div class="price-total">Итого: <?= $priceTotal ?> руб.</div>
-		<a href="/cart/send" class="button">Оформить заказ</a>
+		<?php if ($authUser): ?>
+			<a href="/cart/send" class="button">Оформить заказ</a>
+		<?php else: ?>
+			<span>Чтобы оформить заказ <a href="/sign-in">войдите</a> или <a href="/register">зарегистрируйтесь</a></span>
+		<?php endif; ?>
+		<!--a href="/cart/send" class="button">Оформить заказ</a-->
 	</div>
 </div>
 

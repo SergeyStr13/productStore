@@ -85,7 +85,7 @@ class Product {
 			."categoryId = :categoryId, photo = :photo, price = :price, volume = :volume where product.id= :id");
 			$query->execute(array_diff_key((array) $this, ['categoryTitle' => '']));
 		} else {
-			$product= (array) $this;
+			$product= array_diff_key((array) $this, ['categoryTitle' => '']);
 			$keys = array_keys($product);
 			$fields = implode(',',$keys);
 			$values = implode(',',array_fill(0, count($keys), '?'));

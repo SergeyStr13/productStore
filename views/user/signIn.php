@@ -2,7 +2,7 @@
 
 ?>
 <div class="sign-in">
-	<h1>Вход в панель управления</h1>
+	<h1>Авторизация</h1>
 	<form class="form sign-in" action="<?php $action ?>" method="post">
 		<input name="login" type="text" value="" placeholder="Логин">
 		<input name="password" type="text" value="" placeholder="Пароль">

@@ -1,3 +1,7 @@
+<?php
+	$auth = new \app\authorisation\Authorisation();
+	$authUser = $auth->getUser();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,6 +18,9 @@
 
 		<div class="nav">
 			<div class="cart">
+				<?php if ($authUser): ?>
+					<a class="nav-link" href="/sign-out">Выйти</a>
+				<?php endif; ?>
 				<a href="/cart"><i class="mdi mdi-cart"></i></a>
 			</div>
 
