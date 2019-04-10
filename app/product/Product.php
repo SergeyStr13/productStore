@@ -55,8 +55,6 @@ class Product {
 		$db = App::getInstance()->db->getConnection();
 		$query = $db->query("select product.*, category.title as categoryTitle from product LEFT JOIN category on product.categoryId = category.id");
 		$items = $query->fetchAll(\PDO::FETCH_CLASS, self::class);
-
-		//var_dump($books);
 		return $items;
 	}
 
@@ -68,14 +66,6 @@ class Product {
 		$query = $db->query("select * from product where id in (". implode(',', $ids).")");
 		$items = $query->fetchAll(\PDO::FETCH_CLASS, self::class);
 		return $items;
-	}
-
-	public static function groupBy($items, $key) {
-		$result = [];
-		foreach ($items as $item) {
-			$result[$item->$key][] = $item;
-		}
-		return $result;
 	}
 
 	public function save() {

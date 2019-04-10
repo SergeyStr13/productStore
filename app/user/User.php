@@ -36,17 +36,15 @@ class User {
 	public static function findByLogin($login) {
 		$db = App::getInstance()->db->getConnection();
 		$query = $db->query("select * from user where login='$login'"); // todo: сделать безопасно через плейсхолдер
-		$query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, User::class);
+		$query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, self::class);
 		return $query->fetch();
 	}
 
 	public static function find($id) {
 		$db = App::getInstance()->db->getConnection();
 		$query = $db->query("select * from user where id=$id"); // todo: сделать безопасно через плейсхолдер
-		$query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, User::class);
-		$user = $query->fetch();
-
-		return $user;
+		$query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, self::class);
+		return $query->fetch();
 	}
 
 	public static function all() {

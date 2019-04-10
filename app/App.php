@@ -3,6 +3,7 @@ namespace app;
 
 use app\cart\CartController;
 use app\category\CategoryController;
+use app\order\OrderController;
 use app\page\PageController;
 use app\product\ProductController;
 use app\user\UserController;
@@ -39,6 +40,9 @@ class App extends BaseApp {
 			'/admin/carts' => [CartController::class, 'carts'],
 			'/cart/add' => [CartController::class, 'add'],
 			'/cart/send' => [CartController::class, 'send'],
+
+			'/admin/orders' => [OrderController::class, 'orders'],
+			'/admin/orders/send' => [OrderController::class, 'send'],
 
 			'/main' => [PageController::class, 'main'],
 			'/delivery' => [PageController::class, 'delivery'],

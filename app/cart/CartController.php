@@ -21,10 +21,22 @@ class CartController extends Controller {
 		$this->render('cart', compact('positions'));
 	}
 
-	public function carts() {
+	/*public function carts() {
 		$carts = $this->getCart()->getPositionsProduct();
 		$this->layout = 'admin';
 		$this->render('carts', compact('carts'));
+	}*/
+
+	public function add() {
+		$productId = $this->request->get('product');
+		if (!Product::find($productId)) {
+			die('Товар не найден');
+		}
+		$cart = $this->getCart();
+		$cart->addProduct($productId, 1);
+		$session = new Session();
+		$session->set('cart', $cart);
+		$this->app->redirect('/product/products?message=addedToCart');
 	}
 
 	public function send() {
@@ -35,33 +47,16 @@ class CartController extends Controller {
 		if ($cart && $cart->positions) {
 			$order = new Order(['userId' => $userId, 'createDate' => date('Y-m-d') ]);
 			$orderId = $order->save();
-
 			foreach ($cart->positions as $position) {
 				$position->orderId = $orderId;
 				$position->save();
 			}
 			$session->clear('cart');
 		}
-
 		$this->app->redirect('/product/products?message=cartSend');
 	}
 
-	public function add() {
-		$productId = $this->request->get('product');
-
-		if (!Product::find($productId)) {
-			die('Товар не найден');
-		}
-
-		$cart = $this->getCart();
-		$cart->addProduct($productId, 1);
-		$session = new Session();
-		$session->set('cart', $cart);
-		$this->app->redirect('/product/products?message=addedToCart');
-	}
-
-
-/*	public  function delete() {
+	/*	public  function delete() {
 		$id = $this->request->get('id');
 		$product = Cart::find($id);
 		if ($product) {

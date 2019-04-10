@@ -2,6 +2,7 @@
 namespace app\product;
 
 use app\category\Category;
+use app\core\Collection;
 use app\core\Controller;
 use app\core\File;
 
@@ -16,7 +17,7 @@ class ProductController extends Controller{
 			$message = 'Товар добавлен в корзину';
 		}
 		$products = Product::allWithCategory();
-		$products = Product::groupBy($products,'categoryTitle');
+		$products = Collection::groupBy($products,'categoryTitle');
 
 
 		//var_dump($products);
