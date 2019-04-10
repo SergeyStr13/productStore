@@ -7,9 +7,15 @@ table {
   border: 0; }
 
 body {
-  font-family: Verdana, "Geneva CY", "DejaVu Sans", sans-serif;
+  font-family: Tahoma, "Geneva CY", sans-serif;
   background-image: url("/images/page-bg.jpg");
   background-size: cover; }
+
+h1 {
+  margin-top: 0;
+  color: #5f7171;
+  font-size: 1.5rem;
+  font-weight: normal; }
 
 table.table {
   font-size: 1rem;
@@ -20,12 +26,25 @@ table.table {
     background: #CD853F;
     padding: 20px; }
   table.table th {
-    padding: 20px 5px; }
+    border-bottom: 2px solid #D1D1D1;
+    font-style: normal;
+    color: #3e3e3ede;
+    padding: 15px 5px; }
   table.table td {
     padding: 10px 5px; }
-    table.table td img {
-      width: 50px;
-      height: 50px; }
+
+.catalog img, .manageProduct img {
+  width: 50px;
+  height: 50px; }
+
+.table .tools {
+  width: 65px;
+  padding: 5px; }
+  .table .tools .tool-button {
+    margin-right: 5px; }
+
+.toolbar-right {
+  float: right; }
 
 .button {
   background: #279f47;
@@ -36,12 +55,46 @@ table.table {
   padding: 0 20px;
   text-decoration: none; }
 
-.tool-button.add {
-  float: right; }
+.tool-button {
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 1.1rem;
+  line-height: 30px;
+  height: 30px;
+  width: 30px;
+  box-sizing: border-box;
+  margin-right: 6px;
+  vertical-align: top;
+  border-radius: 3px;
+  background-color: #279f47;
+  color: white; }
+  .tool-button .mdi {
+    transform: rotate(0.1deg); }
+  .tool-button .mdi-close {
+    font-size: 1.2rem; }
+  .tool-button:hover, .tool-button:focus, .tool-button:active {
+    box-shadow: 0 1px 2px rgba(0, 73, 132, 0.1);
+    background-color: #279f47;
+    color: white; }
+  .tool-button.delete:hover, .tool-button.delete:focus, .tool-button.delete:active {
+    background-color: #EA6F8A; }
+  .tool-button.tool-button.tool-button:last-child {
+    margin-right: 0; }
 
 .page {
-  width: 900px;
+  width: 1024px;
   margin: 50px auto; }
+
+.slogan {
+  display: block;
+  text-align: right;
+  font-style: italic;
+  color: #0000FF; }
+
+.clearfix {
+  clear: both;
+  display: block; }
 
 .head {
   background-image: url("/images/head.jpg");
@@ -62,7 +115,8 @@ table.table {
   .nav .nav-link {
     float: right;
     display: inline-block;
-    margin-left: 20px; }
+    margin-left: 20px;
+    text-decoration: none; }
   .nav .cart {
     float: right; }
   .nav ul {
@@ -83,6 +137,24 @@ table.table {
   padding: 20px;
   position: relative; }
 
+.content img {
+  margin-bottom: 30px; }
+
+.content h3 {
+  margin-top: 0;
+  font-weight: normal;
+  color: #226096;
+  font-size: 1.3rem; }
+
+.delivery-number img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0 !important;
+  margin-right: 30px;
+  vertical-align: middle; }
+.delivery-number p {
+  margin-bottom: 30px; }
+
 .form input {
   display: block;
   width: 200px;
@@ -91,6 +163,10 @@ table.table {
   margin-bottom: 20px; }
 .form textarea {
   width: 200px; }
+
+.sign-in {
+  max-width: 250px;
+  margin: 30px auto; }
 
 .cart-page .preview-product {
   margin: 0 40px 0px 100px;

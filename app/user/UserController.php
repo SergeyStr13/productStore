@@ -23,22 +23,30 @@ class UserController extends Controller {
 			$this->app->redirect('/admin/users');
 		}
 		$action = $this->uri;
-		$this->layout = 'admin';
+		//$this->layout = 'admin';
 		$this->render('signIn', compact('action'));
 	}
 
 	public function signOut() {
 		$auth = new Authorisation();
 		$auth->unAuthorise();
-		$this->app->redirect('/admin');
+		$this->app->redirect('/');
 	}
 
 	public function register() {
+		$name = $this->request->post('name');
 		$login = $this->request->post('login');
 		$password = $this->request->post('password');
-		$repeatPass = $this->request->post('repeatPass');
+		$repeatPassword = $this->request->post('repeatPassword');
+		$email = $this->request->post('email');
 
-
+		if ($name && $login && $password && $password === $repeatPassword && $email ) {
+			$user = new User(compact('name','login','password','email'));
+			$user->save();
+			$auth = new Authorisation();
+			$auth->authorise($user);
+			$this->app->redirect('/cart');
+		}
 		$action = $this->uri;
 		$this->render('register', compact('action'));
 	}

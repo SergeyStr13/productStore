@@ -6,6 +6,7 @@ use app\user\User;
 
 class Authorisation {
 
+
 	public function authorise($user) {
 		//$userId = User::findByLogin($this->user);
 		$session = new Session();
@@ -13,6 +14,10 @@ class Authorisation {
 		//var_dump($user->id); exit();
 	}
 
+	/**
+	 * Сброс авторизации
+	 *
+	 */
 	public function unAuthorise() {
 		$session = new Session();
 		$session->clear('authUserId');

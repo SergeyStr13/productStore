@@ -69,6 +69,7 @@ class User {
 			$values = implode(',',array_fill(0, count($keys), '?')); // "'".implode("','", array_values($user))."'";
 			$query = $db->prepare("insert into user ({$fields}) values ({$values}) ");
 			$query->execute(array_values($user));
+			return $this->id = $db->lastInsertId();
 		}
 	}
 

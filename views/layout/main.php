@@ -19,8 +19,10 @@
 		<div class="nav">
 			<div class="cart">
 				<?php if ($authUser): ?>
+					<span><?= $authUser->name ?></span>
 					<a class="nav-link" href="/sign-out">Выйти</a>
 				<?php endif; ?>
+				<a class="nav-link" href="/sign-in">Войти</a>
 				<a href="/cart"><i class="mdi mdi-cart"></i></a>
 			</div>
 

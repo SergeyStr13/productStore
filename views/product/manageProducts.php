@@ -2,8 +2,11 @@
 /**  @var app\category\Product[] $products */
 
 ?>
+<div class="toolbar-right">
+	<a class="button" href="/admin/products/add"><i class="mdi mdi-plus"></i>Добавить</a>
+</div>
 <h1>Товары</h1>
-<a class="tool-button button add" href="/admin/products/add"><i class="mdi mdi-plus"></i>Добавить</a>
+
 <div class="manageProduct">
 	<table class="table">
 		<tr>
@@ -18,16 +21,16 @@
 		</tr>
 		<?php foreach ($products as $product): ?>
 			<tr>
-				<td><?= $product->article ?></td>
+				<td style="font-size: 0.8rem;"><?= $product->article ?></td>
 				<td><img src="<?= '/images/products/'.$product->photo ?>"></td>
 				<td><?= $product->categoryTitle ?></td>
 				<td><?= $product->title ?></td>
 				<td style="font-size: 13px;"><?= $product->description ?></td>
 				<td><?= $product->volume ?></td>
-				<td><?= $product->price ?></td>
-				<td style="width: 50px">
-					<a class="tool-button edit" href="/admin/products/update?id=<?= $product->id ?>"><i class="mdi mdi-pencil"></i></a>
-					<a class="tool-button delete" href="/admin/products/delete?id=<?= $product->id ?>"><i class="mdi mdi-close"></i></a>
+				<td style="white-space: nowrap"><?= $product->price ?> руб.</td>
+				<td class="tools">
+					<a class="tool-button edit" href="/admin/products/update?id=<?= $product->id ?>"><i class="mdi mdi-pencil"></i></a><!--
+					--><a class="tool-button delete" href="/admin/products/delete?id=<?= $product->id ?>"><i class="mdi mdi-close"></i></a>
 				</td>
 			</tr>
 		<?php endforeach; ?>

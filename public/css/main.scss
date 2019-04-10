@@ -2,15 +2,21 @@
 @import "reset";
 
 body {
-	font-family: Verdana, "Geneva CY", "DejaVu Sans", sans-serif;
+	font-family: Tahoma, "Geneva CY", sans-serif;
 	background-image: url("/images/page-bg.jpg");
 	background-size: cover;
+}
+
+h1 {
+	margin-top: 0;
+	color: #5f7171;
+	font-size: 1.5rem;
+	font-weight: normal;
 }
 
 table.table {
 	font-size: 1rem;
 	width: 100%;
-	//margin: 0 -50px 30px;
 
 	&.center td {
 		text-align: center;
@@ -20,17 +26,36 @@ table.table {
 		padding: 20px;
 	}
 	th {
-		padding: 20px 5px;
+		border-bottom: 2px solid #D1D1D1;
+		font-style: normal;
+		color: #3e3e3ede;
+		padding: 15px 5px;
 	}
 	td {
 		padding: 10px 5px;
-		img {
-			width: 50px;
-			height: 50px;
-		}
 	}
 
 }
+
+.catalog, .manageProduct{
+	img {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+.table .tools {
+	width: 65px;
+	padding: 5px;
+	.tool-button {
+		margin-right: 5px;
+	}
+}
+
+.toolbar-right {
+	float: right;
+}
+
 
 .button {
 	background: #279f47;
@@ -42,13 +67,64 @@ table.table {
 	text-decoration: none;
 }
 
-.tool-button.add {
-	float: right;
+.tool-button {
+	text-decoration: none;
+	text-align: center;
+	display: inline-block;
+
+	font-size: 1.1rem;
+	line-height: 30px;
+    height: 30px;
+    width: 30px;
+	box-sizing: border-box;
+	margin-right: 6px;
+	vertical-align: top;
+
+	border-radius: 3px;
+	background-color: #279f47;
+	color: white;
+
+	.mdi {
+		transform: rotate(0.1deg); // fix resize artifacts
+	}
+
+	.mdi-close {
+		font-size: 1.2rem;
+	}
+
+	&:hover, &:focus, &:active {
+		box-shadow: 0 1px 2px rgba(0,73,132,0.1);
+		background-color: #279f47;
+		color: white;
+	}
+
+	&.delete {
+		&:hover, &:focus, &:active {
+			background-color: #EA6F8A;
+		}
+	}
+
+	&.tool-button.tool-button:last-child {
+		margin-right: 0;
+	}
 }
 
+
 .page {
-	width: 900px;
+	width: 1024px;
 	margin: 50px auto;
+}
+
+.slogan {
+	display: block;
+	text-align: right;
+	font-style: italic;
+	color: #0000FF;
+}
+
+.clearfix {
+	clear: both;
+	display: block;
 }
 
 .head {
@@ -74,6 +150,7 @@ table.table {
 		float: right;
 		display: inline-block;
 		margin-left: 20px;
+		text-decoration: none;
 	}
 	.cart {
 		float: right;
@@ -102,8 +179,28 @@ table.table {
 	position: relative;
 }
 
-.form-content {
+.content img {
+	margin-bottom: 30px;
+}
 
+.content h3 {
+	margin-top: 0;
+	font-weight: normal;
+	color: #226096;
+	font-size: 1.3rem;
+}
+
+.delivery-number {
+	img {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 0!important;
+		margin-right: 30px;
+		vertical-align: middle;
+	}
+	p {
+		margin-bottom: 30px;
+	}
 }
 
 .form {
@@ -124,6 +221,11 @@ table.table {
 
 .form-button {
 
+}
+
+.sign-in {
+	max-width: 250px;
+	margin: 30px auto;
 }
 
 .catalog {}
